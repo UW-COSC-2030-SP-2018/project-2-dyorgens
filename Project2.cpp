@@ -4,6 +4,8 @@
 //COSC 2030 - Dr.Borowczak
 //May 5, 2018
 
+//Some help was given from senior level computer science major Auston Larson for some pieces regarding the hash functions
+
 #include "Project2Func.h"
 #include <iostream>
 #include <vector>
@@ -21,8 +23,10 @@ int main()
 	
 	int input;
 	int search;
-	int hash1;
-	string hash2;
+	string stop = "";
+	int hash1 = 0;
+	string choice = "";
+	string hash2 = "";
 	int i = 0;
 	int q = 0;
 	int p = 0;
@@ -84,26 +88,42 @@ int main()
 	cin >> search;
 	cout << search << " was found at index location: " << binary_search(sorted, search) << endl;
 	cout << endl;
+
 	//Beginning of string/int hashing to int
-	//Help from https://stackoverflow.com/questions/16075271/hashing-a-string-to-an-integer-in-c
-	cout << "Please enter an integer or string to be hashed to an integer: " << endl;
-	cin >> hash1;
-	if (cin.fail())
-	{
-		//help all words return the same integer
-		cin >> hash2;
-		hash<string> hasher;
-		auto hashed = hasher(hash2);
-		cout << hashed << endl;
-		return 0;
-	}
-	else 
-	{
+	//Help from lab10 HashMaps GeneralHashFunctions.cpp
+	//The integer hashing is an altered version of the string function found in lab 10
+	cout << "---Now to test hashing-- please enter 'str' to hash a string, 'int' to hash an integer--- " << endl;
+	cin >> choice;
+		if (choice == "int")
+		{
+			cout << "Please enter a integer to be hashed to an integer('-9999' to exit): " << endl;
+			while (hash1 != -9999)
+			{
+				cin >> hash1;
+				if (hash1 == -9999)
+				{
+					return 0;
+				}
+				else {
+					cout << "The hashed integer value of '" << hash1 << "' is " << IntHash(hash1) << endl;
+				}
+			}
+		}
+		else
+		{
+			cout << "Please enter a string to be hashed to an integer ('stop' to stop): " << endl;
+			while (hash2 != "stop")
+			{
+				cin >> hash2;
+				if (hash2 == "stop")
+				{
+					return 0;
+				}
+				else
+				{
+					cout << "The hashed integer value of '" << hash2 << "' is " << WeakHash(hash2) << endl;
 
-		return 0;
-	}
-	
+				}
+			}
+		}
 }
-
-
-
