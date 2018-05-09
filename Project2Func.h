@@ -73,4 +73,49 @@ vector<int> merge_sort(const vector<int>& input)
 
 	return output;
 }
-//Beginning of Integer Hash Fucntion
+//Beginning of Integer Hash Function
+//This is a function for string hashing to integers
+unsigned int WeakHash(const std::string& str)
+{
+	unsigned int b = 3751;
+	unsigned int a = 689;
+	unsigned int hash = 0;
+
+	if (str.length() > 80)
+	{
+		cout << "Please enter a shorter string " << endl;
+		return 0;
+	}
+		for (std::size_t i = str.length() - 4; i < str.length() - 1; i++)
+		{
+			hash = hash * a + str[i];
+			a = a*b;
+		}
+		return hash;
+}
+
+unsigned int IntHash(const int& num)
+{
+	unsigned int b = 3751;
+	unsigned int a = 689;
+	unsigned int hash = 0;
+
+	int n = 0;
+	unsigned int numdig = 0;
+	do {
+		++numdig;
+		n / num; 
+	} while (n);
+	if (numdig > 80)
+	{
+		cout << "Please enter a shorter integer " << endl;
+		return 0;
+	}
+	for (std::size_t i = num - 4; i < num - 1; i++)
+	{
+		hash = hash * a + num;
+		a = a*b;
+	}
+	return hash;
+
+}
